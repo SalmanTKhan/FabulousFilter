@@ -1,18 +1,19 @@
 package com.allattentionhere.fabulousfiltersample;
 
 import android.content.res.Configuration;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.util.ArrayMap;
-import android.support.v7.app.AppCompatActivity;
+import androidx.collection.ArrayMap;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
 import com.allattentionhere.fabulousfilter.AAH_FabulousFragment;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -36,13 +37,13 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab2 = (FloatingActionButton) findViewById(R.id.fab2);
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        ll = (LinearLayout) findViewById(R.id.ll);
+        fab = findViewById(R.id.fab);
+        fab2 = findViewById(R.id.fab2);
+        recyclerView = findViewById(R.id.recyclerView);
+        ll = findViewById(R.id.ll);
 
         mData = Util.getMovies();
-        p = Picasso.with(this);
+        p = new Picasso.Builder(this).build();
         mList.addAll(mData.getAllMovies());
         mAdapter = new MoviesAdapter(mList, p, MainActivity.this);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
